@@ -2,78 +2,78 @@ let quizQuestions = [
     //QUESTION 1
     {
         question: "Inside which HTML element do we put the JavaScript?",
-        answers: [
+        choices: [
             "<script/> ",
             "<scripting/>",
             "<javascript/>",
             "<s/>"
         ],
-        correctAnswer: "<script/>",
+        answer: "<script/>",
     }
     ,
     //QUESTION 2
     {
         question: "The external JavaScript file must contain the <script> tag",
-        answers: [
+        choices: [
             "true ",
             "false",
             ],
-        correctAnswer: "false",
+        answer: "false",
     }
     ,
     //QUESTION 3
     {
         question: "How do you write 'Hello World' in an alert box?",
-        answers: [
+        choices: [
             "alertBox('Hello World')",
             "alert('Hello World')",
             "popUp('Hello World')",
             "alertPopUp('Hello World')",
             ],
-        correctAnswer: "alert('Hello World')",
+        answer: "alert('Hello World')",
     }
     ,
     //QUESTION 4
     {
         question: "How do you create a function in JavaScript?",
-        answers: [
+        choices: [
             "function = myFunction()",
             "function myFunction()",
             "function:myFunction()",
             ],
-        correctAnswer: "function = myFunction()",
+        answer: "function = myFunction()",
     }
     ,
     //QUESTION 5
     {
         question: "How do you create a function in JavaScript?",
-        answers: [
+        choices: [
             "function = myFunction()",
             "function myFunction()",
             "function:myFunction()",
             ],
-        correctAnswer: "function = myFunction()",
+        answer: "function = myFunction()",
     }
     ,
     //QUESTION 6
     {
         question: "How can you add a comment in a JavaScript?",
-        answers: [
+        choices: [
             "This is a comment",
             "//This is a comment",
             "<!--This is a comment-->",
             ],
-        correctAnswer: "//This is a comment",
+        answer: "//This is a comment",
     }
     ,
     //QUESTION 7
     {
         question: "Is JavaScript case-sensitive?",
-        answers: [
+        choices: [
             "true ",
             "false",
             ],
-        correctAnswer: "false",
+        answer: "false",
     }
 ]
     

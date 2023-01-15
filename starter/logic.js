@@ -13,30 +13,28 @@ function startGame() {
 }
 
 //DISPLAY THE QUESTION 
-document.querySelector("#question-title").textContent = quizQuestions[0].question;
+let question = quizQuestions[0].question;
+document.querySelector("#question-title").textContent = question;
 
-//DISPLAY THE CHOICES
-document.querySelector("#choices").textContent = quizQuestions[0].answers;
+//DISPLAY THE CHOICES AS BUTTONS
 
-// FOR LOOP FOR THE CHOICES 
-/*
-- grab the choice element from the html 
-- set variable of answers
-- loop over the length of answers
-- create a choice button 
-- for each choice button, display the inner html as the answers 
-- add event listener to the on the choice button so when it is clicked, the check answer function runs 
- */
-document.getElementById("choices");
-let answers = quizQuestions[0].answers;
-//console.log(answers);
-for (let i = 0; i < answers.length; i++) {
+let choices = quizQuestions[0].choices;
+document.querySelector("#choices").textContent = "";
+
+
+for (let i = 0; i < choices.length; i++) {
     let choiceBtn = document.createElement("button");
-    choiceBtn.innerHTML = answers[i];
+    choiceBtn.textContent = choices[i];
+    //choiceBtn.setAttribute("value", choices[i]);
     choiceBtn.addEventListener("click", checkAnswer);
+    document.getElementById("choices").appendChild(choiceBtn);
 }
+
+let answer = quizQuestions[0].answer;
 
 //CHECK ANSWER FUNCTION 
 function checkAnswer(){
-
+    let usersAnswer = //how do i reference the users answer here? 
+console.log("confirming check answer function has run");
 }
+ 
