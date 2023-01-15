@@ -14,3 +14,29 @@ function startGame() {
 
 //DISPLAY THE QUESTION 
 document.querySelector("#question-title").textContent = quizQuestions[0].question;
+
+//DISPLAY THE CHOICES
+document.querySelector("#choices").textContent = quizQuestions[0].answers;
+
+// FOR LOOP FOR THE CHOICES 
+/*
+- grab the choice element from the html 
+- set variable of answers
+- loop over the length of answers
+- create a choice button 
+- for each choice button, display the inner html as the answers 
+- add event listener to the on the choice button so when it is clicked, the check answer function runs 
+ */
+document.getElementById("choices");
+let answers = quizQuestions[0].answers;
+//console.log(answers);
+for (let i = 0; i < answers.length; i++) {
+    let choiceBtn = document.createElement("button");
+    choiceBtn.innerHTML = answers[i];
+    choiceBtn.addEventListener("click", checkAnswer);
+}
+
+//CHECK ANSWER FUNCTION 
+function checkAnswer(){
+
+}
