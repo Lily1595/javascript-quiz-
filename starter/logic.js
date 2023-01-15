@@ -34,7 +34,13 @@ let answer = quizQuestions[0].answer;
 
 //CHECK ANSWER FUNCTION 
 function checkAnswer(){
-    let usersAnswer = //how do i reference the users answer here? 
-console.log("confirming check answer function has run");
+    console.log("confirming check answer function has run");
+  //let usersAnswer = how do i reference the users answer here?
+    let correctAnswer = answer;
+    if (selectedAnswer === correctAnswer) {
+        score++;
+    } else {
+        // set up the timer to run and then subtract time here
+    }
 }
  
