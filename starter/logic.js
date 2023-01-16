@@ -1,5 +1,5 @@
 //DECLARE TIMER GLOBALLY 
-let timer = 60;
+let secondsLeft = 60;
 //DECLARE SCORE GLOBALLY 
 let score = 0;
 //DECLARE CURRENT QUESTION VARIABLE GLOBALLY 
@@ -10,11 +10,23 @@ document.getElementById("start").addEventListener("click", startGame)
 
 //FUNCTION TO START THE GAME 
 function startGame() {
-    document.getElementById("start-screen").classList.add("hide");
-    document.getElementById("questions").classList.remove("hide");
+    document.getElementById("start-screen").setAttribute("class","hide");
+    document.getElementById("questions").removeAttribute("class");
+    startTimer();
+    displayQuestion();
+}
+
+//START TIMER FUNCTION
+let timeEl = document.querySelector("#time");
+function startTimer() {
+    let timerInterval = setInterval(function() {
+        secondsLeft--; 
+        timeEl.textContent = secondsLeft;
+    },1000)
 }
 
 //DISPLAY THE QUESTION 
+function displayQuestion() {
 //DEBUG - all of this code only works for the first question, how to loop through all the questions ?
 let question = quizQuestions[index].question;
 document.querySelector("#question-title").textContent = question;
@@ -34,6 +46,7 @@ for (let i = 0; i < choices.length; i++) {
 }
 
 let answer = quizQuestions[index].answer;
+}
 
 //CHECK ANSWER FUNCTION 
 function checkAnswer(e){
