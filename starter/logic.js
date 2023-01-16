@@ -1,4 +1,5 @@
-//BUGS: 1. not looping through all the questions 2. the comparison statement in the check answer function doesnt work 
+/* ISSUES TO DEBUG: HOW TO GET THE USERS ANSWER FROM THE EVENT CLICK
+AND HOW TO STORE THE INITIALS AND HIGH SCORES AT THE END*/
 
 
 //DECLARE TIMER GLOBALLY 
@@ -6,70 +7,75 @@ let secondsLeft = 60;
 //DECLARE SCORE GLOBALLY 
 let score = 0;
 //DECLARE CURRENT QUESTION VARIABLE GLOBALLY 
-let currentQuest = 0;
+let currentQuestion = 0;
 
 //WHEN THE START BUTTON IS PRESSED, THE GAME BEGINS 
 document.getElementById("start").addEventListener("click", startGame)
 
 //FUNCTION TO START THE GAME 
 function startGame() {
-    document.getElementById("start-screen").setAttribute("class","hide");
+    document.getElementById("start-screen").setAttribute("class", "hide");
     document.getElementById("questions").removeAttribute("class");
     startTimer();
     displayQuestion();
+    displayChoices();
 }
 
 //START TIMER FUNCTION
 let timeEl = document.querySelector("#time");
 function startTimer() {
-    let timerInterval = setInterval(function() {
-        secondsLeft--; 
+        setInterval(function () {
+        secondsLeft--;
         timeEl.textContent = secondsLeft;
-    },1000)
-    if (secondsLeft === 0){
-        endgame();
+    }, 1000)
+    if (secondsLeft === 0) {
+        endGame();
     }
 }
 
 //DISPLAY THE QUESTION 
 function displayQuestion() {
-let question = quizQuestions[index].question;
-document.querySelector("#question-title").textContent = question;
+    let question = quizQuestions[currentQuestion].question;
+    document.querySelector("#question-title").textContent = question;
+    }
 
-let choices = quizQuestions[index].choices;
-document.querySelector("#choices").textContent = "";
-
-for (let i = 0; i < choices.length; i++) {
-    let choiceBtn = document.createElement("button");
-    choiceBtn.textContent = choices[i];
-    choiceBtn.setAttribute("value", choices[i]);
-    choiceBtn.addEventListener("click", checkAnswer);
-    document.getElementById("choices").appendChild(choiceBtn);
-}
-
-let answer = quizQuestions[index].answer;
-}
-
+//DISPLAY THE CHOICES AND MAKE CHOICES INTO BUTTONS 
+function displayChoices() {
+        let choices = quizQuestions[currentQuestion].choices;
+        document.querySelector("#choices").textContent = "";
+        for (let i = 0; i < choices.length; i++) {
+            let choiceBtn = document.createElement("button");
+            choiceBtn.textContent = choices[i];
+            choiceBtn.addEventListener("click", checkAnswer);
+            document.getElementById("choices").appendChild(choiceBtn);
+    }
+}   
+    
 //CHECK ANSWER FUNCTION 
-function checkAnswer(e){
+function checkAnswer(event) {
     console.log("confirming check answer function has run");
-    let userAnswer = e.target.value;
-    console.log(typeof(userAnswer));
-    let correctAnswer = answer;
-    console.log(typeof(correctAnswer));
-    console.log(userAnswer);
-    console.log(correctAnswer);
-    if (userAnswer == correctAnswer) {
-        console.log("correct ans");
-        score++
+    event.preventDefault(); 
+    let userAnswer = value.this;
+    console.log(value.this)
+    let correctAnswer = quizQuestions[currentQuestion].answer; 
+    if (userAnswer === correctAnswer){
+        score++;
+        currentQuestion++;
     }
     else {
-        console.log("not correct ans");
-    secondsLeft -= 10; 
+        secondsLeft -= 10;
+        currentQuestion++;
     }
 }
 
-//END GANE FUNCTION 
+//END GAME FUNCTION 
 function endGame() {
-    
+    //display end screen
+    document.getElementById("questions").setAttribute("class", "hide");
+    document.getElementById("end-screen").removeAttribute("class");
+    document.getElementById("final-score").innerHTML = score;
+}
+
+//SAVE INITIALS AND SCORE TO LOCAL STORAGE FUNCTION 
+function storeHighscores() {
 }

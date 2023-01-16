@@ -68,12 +68,12 @@ let quizQuestions = [
     ,
     //QUESTION 7
     {
-        question: "Is JavaScript case-sensitive?",
+        question: "JavaScript is case-sensitive",
         choices: [
             "true ",
             "false",
             ],
         answer: "false",
-    }
-]
+    },
+];
     
