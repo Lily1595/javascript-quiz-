@@ -2,6 +2,8 @@
 let timer = 60;
 //DECLARE SCORE GLOBALLY 
 let score = 0;
+//DECLARE CURRENT QUESTION VARIABLE GLOBALLY 
+let currentQuest = 0;
 
 //WHEN THE START BUTTON IS PRESSED, THE GAME BEGINS 
 document.getElementById("start").addEventListener("click", startGame)
@@ -13,34 +15,41 @@ function startGame() {
 }
 
 //DISPLAY THE QUESTION 
-let question = quizQuestions[0].question;
+//DEBUG - all of this code only works for the first question, how to loop through all the questions ?
+let question = quizQuestions[index].question;
 document.querySelector("#question-title").textContent = question;
 
 //DISPLAY THE CHOICES AS BUTTONS
 
-let choices = quizQuestions[0].choices;
+let choices = quizQuestions[index].choices;
 document.querySelector("#choices").textContent = "";
 
 
 for (let i = 0; i < choices.length; i++) {
     let choiceBtn = document.createElement("button");
     choiceBtn.textContent = choices[i];
-    //choiceBtn.setAttribute("value", choices[i]);
+    choiceBtn.setAttribute("value", choices[i]);
     choiceBtn.addEventListener("click", checkAnswer);
     document.getElementById("choices").appendChild(choiceBtn);
 }
 
-let answer = quizQuestions[0].answer;
+let answer = quizQuestions[index].answer;
 
 //CHECK ANSWER FUNCTION 
-function checkAnswer(){
+function checkAnswer(e){
     console.log("confirming check answer function has run");
-  //let usersAnswer = how do i reference the users answer here?
+    let userAnswer = e.target.value;
+    console.log(typeof(userAnswer));
     let correctAnswer = answer;
-    if (selectedAnswer === correctAnswer) {
-        score++;
-    } else {
-        // set up the timer to run and then subtract time here
+    console.log(typeof(correctAnswer));
+    console.log(userAnswer);
+    console.log(correctAnswer);
+    if (userAnswer == correctAnswer) {
+        console.log("correct ans");
+        score++
+    }
+    else {
+        console.log("not correct ans");
+    //subtract time from the clock 
     }
 }
- 
