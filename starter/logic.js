@@ -1,3 +1,6 @@
+//BUGS: 1. not looping through all the questions 2. the comparison statement in the check answer function doesnt work 
+
+
 //DECLARE TIMER GLOBALLY 
 let secondsLeft = 60;
 //DECLARE SCORE GLOBALLY 
@@ -23,19 +26,18 @@ function startTimer() {
         secondsLeft--; 
         timeEl.textContent = secondsLeft;
     },1000)
+    if (secondsLeft === 0){
+        endgame();
+    }
 }
 
 //DISPLAY THE QUESTION 
 function displayQuestion() {
-//DEBUG - all of this code only works for the first question, how to loop through all the questions ?
 let question = quizQuestions[index].question;
 document.querySelector("#question-title").textContent = question;
 
-//DISPLAY THE CHOICES AS BUTTONS
-
 let choices = quizQuestions[index].choices;
 document.querySelector("#choices").textContent = "";
-
 
 for (let i = 0; i < choices.length; i++) {
     let choiceBtn = document.createElement("button");
@@ -63,6 +65,11 @@ function checkAnswer(e){
     }
     else {
         console.log("not correct ans");
-    //subtract time from the clock 
+    secondsLeft -= 10; 
     }
+}
+
+//END GANE FUNCTION 
+function endGame() {
+    
 }
