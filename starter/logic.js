@@ -94,14 +94,27 @@ function endGame() {
 }
 
 //SAVE INITIALS AND SCORE THIS IN LOCAL STORAGE FUNCTION 
-submit.addEventListener("click", saveHighScore); 
-let inputIntials = initials.value; 
+let initialsArray = [JSON.parse(localStorage.getItem("initialsArray"))];
+let scoreArray = [JSON.parse(localStorage.getItem("scoreArray"))];
 
-function saveHighScore() {
+submit.addEventListener("click", storeHighScore); 
 
+function storeHighScore() {
+let initialsInput = initials.value;
+if (initialsInput === "") {
+    alert("Please type your initials");
 }
-
-
+else if (initialsInput.length > 3) {
+    alert('maximum 3 letters')
+}
+else {
+    initialsArray.push(initialsInput);
+    scoreArray.push(finalScore);
+    localStorage.setItem("initialsArray", JSON.stringify(initialsArray));
+    localStorage.setItem("scoreArray", JSON.stringify(scoreArray));
+}
+feedback.classList.remove('hide');
+}
 
 
 
