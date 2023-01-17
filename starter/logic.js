@@ -1,8 +1,8 @@
 /*
 TO DEBUG: 
 1. TIMER IS GOING INTO MINUS NUMBERS
-2. CHECK ANSWER FUNCTION ISN'T WORKING PROPERLY 
-3. NOT MOVING TO THE NEXT QUESTION ONCE BUTTON IS PRESSED 
+2. END GAME FUNCTION NOT WORKING 
+3. STORE HIGH SCORES FUNCTION NOT WORKING  
 */
 
 // INITIALISE JS VARIABLES 
@@ -35,28 +35,25 @@ function startGame() {
     startScreen.removeAttribute("class");
     startTimer();
     displayQuestion();
-    displayChoices();
 }
 
 //START TIMER FUNCTION
 function startTimer() {
-        setInterval(function () {
+    var timerInterval = setInterval(function () {
         secondsLeft--;
         timer.textContent = secondsLeft;
+        if (secondsLeft <= 0 || currentQuestion === quizQuestions.length) {
+            timer.textContent = 0;
+            clearInterval(timerInterval)
+            endGame();
+        }
     }, 1000)
-    if (secondsLeft === 0) {
-        endGame();
-    }
 }
 
 //DISPLAY THE QUESTION 
 function displayQuestion() {
     let question = quizQuestions[currentQuestion].question;
     questionTitle.textContent = question;
-    }
-
-//DISPLAY THE CHOICES AND MAKE CHOICES INTO BUTTONS 
-function displayChoices() {
     let choices = quizQuestions[currentQuestion].choices;
     choicesEl.textContent = "";
     for (let i = 0; i < choices.length; i++) {
@@ -64,154 +61,66 @@ function displayChoices() {
         choiceBtn.textContent = choices[i];
         choicesEl.appendChild(choiceBtn);
         choicesEl.addEventListener("click", checkAnswer);
-        choicesEl.addEventListener("click", function(){
-            currentQuestion++;
-        });
+    };
 }
-} 
 
 //CHECK ANSWER FUNCTION
 function checkAnswer(e) {
     let selectedAnswer = e.target.innerHTML;
     console.log(selectedAnswer);
     let correctAnswer = quizQuestions[currentQuestion].answer;
-    if (selectedAnswer === correctAnswer){
-    console.log ("correct");
-    score++;
-}
-    else {
-        console.log("this was not correct")
+    console.log(correctAnswer);
+    if (selectedAnswer === correctAnswer) {
+        score++;
+        currentQuestion++;
+        if (currentQuestion === quizQuestions.length) {
+            endGame()
+        } else {
+            displayQuestion();
+        }
+    } else {
+        feedback.textContent = "Wrong answer!";
         secondsLeft -= 10;
+        currentQuestion++;
+        if (currentQuestion === quizQuestions.length) {
+            endGame()
+        } else {
+            displayQuestion();
+        }
     }
 }
+
 
 //END GAME FUNCTION 
 function endGame() {
+    console.log("end game funcion has run")
     //display end screen
     startScreen.setAttribute("class", "hide");
     endScreen.removeAttribute("class");
+    //display score 
     finalScore.innerHTML = score;
 }
 
-//SAVE INITIALS AND SCORE THIS IN LOCAL STORAGE FUNCTION 
-let initialsArray = [JSON.parse(localStorage.getItem("initialsArray"))];
-let scoreArray = [JSON.parse(localStorage.getItem("scoreArray"))];
-
-submit.addEventListener("click", storeHighScore); 
-
-function storeHighScore() {
-let initialsInput = initials.value;
-if (initialsInput === "") {
-    alert("Please type your initials");
-}
-else if (initialsInput.length > 3) {
-    alert('maximum 3 letters')
-}
-else {
-    initialsArray.push(initialsInput);
-    scoreArray.push(finalScore);
-    localStorage.setItem("initialsArray", JSON.stringify(initialsArray));
-    localStorage.setItem("scoreArray", JSON.stringify(scoreArray));
-}
-feedback.classList.remove('hide');
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-function storeHighscores() 
+//SAVE INITIALS AND SCORE THIS IN LOCAL STORAGE FUNCTION
+submit.addEventListener("click", function (e) {
+    e.preventDefault();
     let initialsInput = initials.value;
-submit.addEventListener("click", function() {})*/
-
-
-
-     /* Conditions to check the correct and wrong answers
-    if (userAnswer.matches("button")) {
-      if (index < questions.length - 1 && timeLeft > 0) {
-        if (key === correctAnswer) {
-          feedback.textContent = "Correct!";
-          correctSound.play();
-        } else {
-          feedback.textContent = "Wrong!";
-          wrongSound.play();
-          timeLeft -= 20;
-        }
-        index++;
-      } else {
-        if (key !== correctAnswer) {
-          timeLeft -= 20;
-        }
-
-*/
-/*
-let userAnswer = e.target;
-    let btnKey = userAnswer.innerText;
-    console.log(btnKey);
-    if (btnKey === quizQuestions[currentQuestion].answer){
-    console.log ("correct");
-    score++;
-}
-    else {
-        console.log("this was not correct")
-        secondsLeft -= 10;
-    }
-    currentQuestion++;
-}
-*/
-//CHECK ANSWER FUNCTION
-/*
-function checkAnswer(event) {
-    let buttonEl = event.target;
-    if(!buttonEl.matches(".choice-button")){
-        return
-    }
-    let correctAnswer = quizQuestions[currentQuestion].answer;
-    if (buttonEl.value === correctAnswer){
-        console.log("this was correct")
-        score++;    }
-    else {
-        console.log("this was not correct")
-        secondsLeft -= 10;
-    }
-    currentQuestion++;
-}
-
-//CHECK ANSWER FUNCTION 2 
-function checkAnswer(event) {
-    let correctAnswer = quizQuestions[currentQuestion].answer;
-    if (correctAnswer === event.target.textContent) {
-        console.log("this was correct")
-        score++;  
+    let info = {initials: initialsInput, score: score}
+    var final = localStorage.getItem("final")
+    if(final === null) {
+        final = []
     } else {
-        console.log("this was not correct")
-        secondsLeft -= 10;}
-     currentQuestion++; 
+        final = JSON.parse(final)
     }
-    
-
-//CHECK ANSWER FUNCTION 3 
-function checkAnswer(event) {
-        let usersAnswer = event.target;
-        let correctAnswer = quizQuestions[currentQuestion].answer;
-        if (usersAnswer.value === correctAnswer){
-            console.log("this was correct")
-            score++;    }
-        else {
-            console.log("this was not correct")
-            secondsLeft -= 10;
-        }
-        currentQuestion++;
+    if (initialsInput === "") {
+        alert("Please type your initials");
     }
-
-    */
+    else if (initialsInput.length > 3) {
+        alert('maximum 3 letters')
+    }
+    else {
+        final.push(info);
+        localStorage.setItem("final", JSON.stringify(final));
+ 
+    }
+});

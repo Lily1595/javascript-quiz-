@@ -1,14 +1,14 @@
 let quizQuestions = [
     //QUESTION 1
     {
-        question: "Inside which HTML element do we put the JavaScript?",
+        question: "How do you find the minimum of x and y using JavaScript?",
         choices: [
-            "<script/> ",
-            "<scripting/>",
-            "<javascript/>",
-            "<s/>"
+            "min(x,y)",
+            "math.min(x,y)",
+            "math.min(xy)",
+            "min(xy)",
         ],
-        answer: "<script/>",
+        answer: "math.min(x,y)",
     }
     ,
     //QUESTION 2
@@ -46,17 +46,6 @@ let quizQuestions = [
     ,
     //QUESTION 5
     {
-        question: "How do you create a function in JavaScript?",
-        choices: [
-            "function = myFunction()",
-            "function myFunction()",
-            "function:myFunction()",
-            ],
-        answer: "function = myFunction()",
-    }
-    ,
-    //QUESTION 6
-    {
         question: "How can you add a comment in a JavaScript?",
         choices: [
             "This is a comment",
@@ -66,14 +55,14 @@ let quizQuestions = [
         answer: "//This is a comment",
     }
     ,
-    //QUESTION 7
+    //QUESTION 6
     {
         question: "JavaScript is case-sensitive",
         choices: [
             "true ",
             "false",
             ],
-        answer: "false",
+        answer: "true",
     },
 ];
     
