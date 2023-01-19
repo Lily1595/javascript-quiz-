@@ -15,11 +15,10 @@ let highScoreContainer = document.getElementById("highscores");
 
 for (let i = 0; i < highScores.length; i++) {
   let highScore = highScores[i];
-  var highScoreList = document.createElement("li");
+  let highScoreList = document.createElement("li");
   highScoreList.innerHTML = highScore.initials + ": " + highScore.score;
   highScoreContainer.appendChild(highScoreList);
 }
-
 
 
 let clearButton = document.querySelector("#clear");
