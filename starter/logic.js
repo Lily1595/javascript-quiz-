@@ -123,4 +123,5 @@ submit.addEventListener("click", function (e) {
         localStorage.setItem("final", JSON.stringify(final));
  
     }
+    
 });

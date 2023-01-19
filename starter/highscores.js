@@ -1,3 +1,4 @@
+
 // Get high scores from local storage
 let highScores = JSON.parse(localStorage.getItem("final")) || [];
 
@@ -10,9 +11,21 @@ highScores.sort(function(a, b) {
 let highScoreContainer = document.getElementById("highscores");
 
 // Loop through the high scores and create a list element for each one
+
+
 for (let i = 0; i < highScores.length; i++) {
   let highScore = highScores[i];
-  let highScoreList = document.createElement("li");
+  var highScoreList = document.createElement("li");
   highScoreList.innerHTML = highScore.initials + ": " + highScore.score;
   highScoreContainer.appendChild(highScoreList);
 }
+
+
+
+let clearButton = document.querySelector("#clear");
+
+// Clear Highscores 
+clearButton.addEventListener("click", function(){
+  localStorage.clear();
+  highScoreContainer.innerHTML = "";
+}); 
