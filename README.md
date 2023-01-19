@@ -34,5 +34,5 @@ N/A
 Please refer to the license in the repo. 
 ---
 
-![Image of finished website](./Screenshot%202023-01-19%20at%2018.55.39.png)
+![Image of finished website](./Screenshot%202023-01-19%20at%2019.36.19.png)
 
