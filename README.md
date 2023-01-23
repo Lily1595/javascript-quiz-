@@ -1,4 +1,4 @@
-# Unique Password Generator 
+# Javascript quiz! 
 
 ## Description
 
@@ -21,7 +21,7 @@ N/A
 
 ## Usage
 
-Link to deployed application: 
+Link to deployed application: https://lily1595.github.io/javascript-quiz-/ 
 
 Please click the 'start' button to start the application! 
 
